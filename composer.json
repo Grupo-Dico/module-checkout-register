@@ -1,0 +1,27 @@
+{
+    "name": "gdmexico/module-checkout-register",
+    "description": "Customer account registration inside the Magento 2 checkout authentication modal.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "require": {
+        "php": ">=7.4 <8.6",
+        "magento/framework": "*",
+        "magento/module-checkout": "*",
+        "magento/module-customer": "*",
+        "magento/module-store": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GDMexico\\CheckoutRegister\\": ""
+        }
+    },
+    "suggest": {
+        "magento/module-ui": "Provides the standard checkout modal UI."
+    }
+}

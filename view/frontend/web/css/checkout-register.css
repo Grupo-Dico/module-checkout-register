@@ -1,0 +1,100 @@
+/**
+ * Checkout authentication modal: login + "Create account".
+ * Scoped to .gdm-checkout-register so it does not affect other modals.
+ */
+
+/* Call to action to register, visually separated from the main Sign In button */
+.gdm-checkout-register .gdm-register-cta {
+    border-top: 1px solid #ddd;
+    clear: both;
+    margin-top: 20px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.gdm-checkout-register .gdm-register-cta__text {
+    margin: 0 0 10px;
+}
+
+.gdm-checkout-register .action.action-create-account,
+.gdm-checkout-register .action.action-register {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* Neutral outline so it does not compete with the Sign In button */
+.gdm-checkout-register .action.action-create-account {
+    background: #fff;
+    border: 1px solid #333;
+    color: #333;
+    padding: 10px 15px;
+}
+
+.gdm-checkout-register .action.action-create-account:hover,
+.gdm-checkout-register .action.action-create-account:focus {
+    background: #333;
+    border-color: #333;
+    color: #fff;
+}
+
+/* Registration form: single column, everything stacked and aligned */
+.gdm-checkout-register .gdm-register-form .actions-toolbar {
+    margin-top: 10px;
+}
+
+.gdm-checkout-register .gdm-register-form .actions-toolbar > .primary,
+.gdm-checkout-register .gdm-register-form .actions-toolbar > .secondary {
+    display: block;
+    float: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.gdm-checkout-register .gdm-register-form .actions-toolbar > .secondary {
+    margin-top: 15px;
+}
+
+.gdm-checkout-register .action.action-back-to-login {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.gdm-checkout-register input.input-text {
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Mobile: stack login / forgot password / create account with full width buttons */
+@media only screen and (max-width: 767px) {
+    .gdm-checkout-register .actions-toolbar > .primary,
+    .gdm-checkout-register .actions-toolbar > .secondary {
+        display: block;
+        float: none;
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .gdm-checkout-register .actions-toolbar > .secondary {
+        margin-top: 15px;
+        padding-top: 0;
+    }
+
+    .gdm-checkout-register .actions-toolbar .action.action-login,
+    .gdm-checkout-register .actions-toolbar .action.action-register {
+        box-sizing: border-box;
+        margin: 0;
+        width: 100%;
+    }
+}

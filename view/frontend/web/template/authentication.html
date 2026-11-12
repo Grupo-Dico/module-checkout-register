@@ -1,0 +1,182 @@
+<!--
+/**
+ * Based on Magento_Checkout/template/authentication.html.
+ * Adds an inline "Create account" form so a new customer can register without leaving the checkout.
+ */
+-->
+<div class="authentication-wrapper" data-block="authentication" data-bind="visible: isActive()">
+    <button
+        type="button"
+        class="action action-auth-toggle"
+        data-trigger="authentication">
+        <span data-bind="i18n: 'Sign In'"></span>
+    </button>
+    <div class="block-authentication gdm-checkout-register"
+         style="display: none"
+         data-bind="mageInit: {
+            'Magento_Ui/js/modal/modal':{
+                'type': 'custom',
+                'modalClass': 'authentication-dropdown',
+                'trigger': '[data-trigger=authentication]',
+                'wrapperClass': 'authentication-wrapper',
+                'parentModalClass': '_has-modal-custom _has-auth-shown',
+                'responsive': true,
+                'responsiveClass': 'custom-slide',
+                'overlayClass': 'dropdown-overlay modal-custom-overlay',
+                'buttons': []
+            }}">
+        <!-- ko foreach: getRegion('before') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <div class="block block-customer-login"
+             data-bind="attr: {'data-label': $t('or')}">
+            <div class="block-title">
+                <strong id="block-customer-login-heading"
+                    role="heading"
+                    aria-level="2"
+                    data-bind="i18n: isRegisterMode() ? 'Create account' : 'Sign In'"></strong>
+            </div>
+            <!-- ko foreach: getRegion('messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+
+            <!-- ko ifnot: isRegisterMode -->
+            <div class="block-content" aria-labelledby="block-customer-login-heading">
+                <form data-role="login"
+                      data-bind="submit:login"
+                      method="post"
+                      novalidate="novalidate">
+                    <div class="fieldset"
+                              data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                        <div class="field field-email required">
+                            <label class="label" for="login-email"><span data-bind="i18n: 'Email Address'"></span></label>
+                            <div class="control">
+                                <input name="username"
+                                       id="login-email"
+                                       type="email"
+                                       class="input-text"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true, 'validate-email':true}"
+                                />
+                            </div>
+                        </div>
+                        <div class="field field-password required">
+                            <label for="login-password" class="label"><span data-bind="i18n: 'Password'"></span></label>
+                            <div class="control">
+                                <input type="password"
+                                       class="input-text"
+                                       id="login-password"
+                                       name="password"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true}"
+                                       autocomplete="off"/>
+                            </div>
+                        </div>
+                        <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="actions-toolbar">
+                        <input name="context" type="hidden" value="checkout" />
+                        <div class="primary">
+                            <button type="submit" class="action action-login secondary"><span data-bind="i18n: 'Sign In'"></span></button>
+                        </div>
+                        <div class="secondary">
+                            <a class="action action-remind" data-bind="attr: { href: forgotPasswordUrl }">
+                                <span data-bind="i18n: 'Forgot Your Password?'"></span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                <div class="gdm-register-cta">
+                    <p class="gdm-register-cta__text" data-bind="i18n: 'Don\'t have an account yet?'"></p>
+                    <button type="button"
+                            class="action action-create-account"
+                            data-bind="click: showRegister">
+                        <span data-bind="i18n: 'Create account'"></span>
+                    </button>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: isRegisterMode -->
+            <div class="block-content" aria-labelledby="block-customer-login-heading">
+                <form data-role="register"
+                      class="gdm-register-form"
+                      data-bind="submit: register"
+                      method="post"
+                      novalidate="novalidate">
+                    <div class="fieldset"
+                         data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                        <div class="field field-firstname required">
+                            <label class="label" for="register-firstname"><span data-bind="i18n: 'First Name'"></span></label>
+                            <div class="control">
+                                <input name="firstname"
+                                       id="register-firstname"
+                                       type="text"
+                                       class="input-text"
+                                       autocomplete="given-name"
+                                       data-validate="{required:true}"/>
+                            </div>
+                        </div>
+                        <div class="field field-lastname required">
+                            <label class="label" for="register-lastname"><span data-bind="i18n: 'Last Name'"></span></label>
+                            <div class="control">
+                                <input name="lastname"
+                                       id="register-lastname"
+                                       type="text"
+                                       class="input-text"
+                                       autocomplete="family-name"
+                                       data-validate="{required:true}"/>
+                            </div>
+                        </div>
+                        <div class="field field-email required">
+                            <label class="label" for="register-email"><span data-bind="i18n: 'Email Address'"></span></label>
+                            <div class="control">
+                                <input name="email"
+                                       id="register-email"
+                                       type="email"
+                                       class="input-text"
+                                       autocomplete="email"
+                                       data-validate="{required:true, 'validate-email':true}"/>
+                            </div>
+                        </div>
+                        <div class="field field-password required">
+                            <label class="label" for="register-password"><span data-bind="i18n: 'Password'"></span></label>
+                            <div class="control">
+                                <input name="password"
+                                       id="register-password"
+                                       type="password"
+                                       class="input-text"
+                                       autocomplete="new-password"
+                                       data-validate="{required:true}"/>
+                            </div>
+                        </div>
+                        <div class="field field-password-confirmation required">
+                            <label class="label" for="register-password-confirmation"><span data-bind="i18n: 'Confirm Password'"></span></label>
+                            <div class="control">
+                                <input name="password_confirmation"
+                                       id="register-password-confirmation"
+                                       type="password"
+                                       class="input-text"
+                                       autocomplete="new-password"
+                                       data-validate="{required:true, equalTo:'#register-password'}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action action-register primary"><span data-bind="i18n: 'Create account'"></span></button>
+                        </div>
+                        <div class="secondary">
+                            <button type="button" class="action action-back-to-login" data-bind="click: showLogin">
+                                <span data-bind="i18n: 'Already have an account? Sign in'"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
