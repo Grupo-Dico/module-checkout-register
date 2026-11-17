@@ -1,7 +1,65 @@
 /**
  * Checkout authentication modal: login + "Create account".
- * Scoped to .gdm-checkout-register so it does not affect other modals.
+ * Scoped to .gdm-register-modal / .gdm-checkout-register so it does not affect other modals.
  */
+
+/*
+ * The theme opens .authentication-dropdown at 70% width and splits the content in two columns
+ * (login | new customer). This modal has a single column, so it is narrowed and centered
+ * on every viewport, which makes desktop look like mobile.
+ */
+.modal-popup.authentication-dropdown.gdm-register-modal._show .modal-inner-wrap {
+    box-sizing: border-box !important;
+    margin: 6rem auto 0 !important;
+    max-width: 440px !important;
+    width: calc(100vw - 30px) !important;
+}
+
+.modal-popup.authentication-dropdown.gdm-register-modal._show .block-authentication {
+    display: block !important;
+    width: 100% !important;
+}
+
+.modal-popup.authentication-dropdown.gdm-register-modal._show .block-authentication .block-customer-login {
+    border: 0 !important;
+    clear: both !important;
+    float: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .modal-popup.authentication-dropdown.gdm-register-modal._show .modal-inner-wrap {
+        margin: 15px auto !important;
+    }
+}
+
+/* Same stacked layout for login and register at every width */
+.gdm-checkout-register .actions-toolbar > .primary,
+.gdm-checkout-register .actions-toolbar > .secondary {
+    display: block;
+    float: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.gdm-checkout-register .actions-toolbar > .secondary {
+    margin-top: 15px;
+}
+
+.gdm-checkout-register .actions-toolbar {
+    margin-top: 10px;
+}
+
+.gdm-checkout-register .actions-toolbar .action.action-login,
+.gdm-checkout-register .actions-toolbar .action.action-register {
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    width: 100%;
+}
 
 /* Call to action to register, visually separated from the main Sign In button */
 .gdm-checkout-register .gdm-register-cta {
@@ -41,25 +99,6 @@
     color: #fff;
 }
 
-/* Registration form: single column, everything stacked and aligned */
-.gdm-checkout-register .gdm-register-form .actions-toolbar {
-    margin-top: 10px;
-}
-
-.gdm-checkout-register .gdm-register-form .actions-toolbar > .primary,
-.gdm-checkout-register .gdm-register-form .actions-toolbar > .secondary {
-    display: block;
-    float: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    width: 100%;
-}
-
-.gdm-checkout-register .gdm-register-form .actions-toolbar > .secondary {
-    margin-top: 15px;
-}
-
 .gdm-checkout-register .action.action-back-to-login {
     background: none;
     border: 0;
@@ -73,28 +112,4 @@
     box-sizing: border-box;
     max-width: 100%;
     width: 100%;
-}
-
-/* Mobile: stack login / forgot password / create account with full width buttons */
-@media only screen and (max-width: 767px) {
-    .gdm-checkout-register .actions-toolbar > .primary,
-    .gdm-checkout-register .actions-toolbar > .secondary {
-        display: block;
-        float: none;
-        margin: 0;
-        text-align: center;
-        width: 100%;
-    }
-
-    .gdm-checkout-register .actions-toolbar > .secondary {
-        margin-top: 15px;
-        padding-top: 0;
-    }
-
-    .gdm-checkout-register .actions-toolbar .action.action-login,
-    .gdm-checkout-register .actions-toolbar .action.action-register {
-        box-sizing: border-box;
-        margin: 0;
-        width: 100%;
-    }
 }
