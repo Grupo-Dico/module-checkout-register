@@ -34,9 +34,15 @@
     }
 }
 
-/* Same stacked layout for login and register at every width */
-.gdm-checkout-register .actions-toolbar > .primary,
-.gdm-checkout-register .actions-toolbar > .secondary {
+/* Same stacked, centered layout for login and register at every width.
+   Doubled class raises specificity over the theme's `.block-authentication .actions-toolbar` rules. */
+.block-authentication.gdm-checkout-register .actions-toolbar {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.block-authentication.gdm-checkout-register .actions-toolbar > .primary,
+.block-authentication.gdm-checkout-register .actions-toolbar > .secondary {
     display: block;
     float: none;
     margin: 0;
@@ -45,20 +51,18 @@
     width: 100%;
 }
 
-.gdm-checkout-register .actions-toolbar > .secondary {
+.block-authentication.gdm-checkout-register .actions-toolbar > .secondary {
     margin-top: 15px;
 }
 
-.gdm-checkout-register .actions-toolbar {
-    margin-top: 10px;
-}
-
-.gdm-checkout-register .actions-toolbar .action.action-login,
-.gdm-checkout-register .actions-toolbar .action.action-register {
+.block-authentication.gdm-checkout-register .actions-toolbar .action.action-login,
+.block-authentication.gdm-checkout-register .actions-toolbar .action.action-register {
     box-sizing: border-box;
-    display: block;
+    display: inline-block;
+    float: none;
     margin: 0;
-    width: 100%;
+    min-width: 200px;
+    width: auto;
 }
 
 /* Call to action to register, visually separated from the main Sign In button */
@@ -74,14 +78,13 @@
     margin: 0 0 10px;
 }
 
-.gdm-checkout-register .action.action-create-account,
-.gdm-checkout-register .action.action-register {
+.gdm-checkout-register .action.action-create-account {
     box-sizing: border-box;
     cursor: pointer;
-    display: block;
+    display: inline-block;
     margin: 0;
+    min-width: 200px;
     text-align: center;
-    width: 100%;
 }
 
 /* Neutral outline so it does not compete with the Sign In button */
@@ -101,6 +104,9 @@
 
 .gdm-checkout-register .action.action-back-to-login {
     background: none;
+    display: inline-block;
+    float: none;
+    margin: 0 auto;
     border: 0;
     box-shadow: none;
     cursor: pointer;
