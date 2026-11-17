@@ -1,38 +1,7 @@
 /**
  * Checkout authentication modal: login + "Create account".
- * Scoped to .gdm-register-modal / .gdm-checkout-register so it does not affect other modals.
+ * Scoped to .gdm-checkout-register so it does not affect other modals.
  */
-
-/*
- * The theme opens .authentication-dropdown at 70% width and splits the content in two columns
- * (login | new customer). This modal has a single column, so it is narrowed and centered
- * on every viewport, which makes desktop look like mobile.
- */
-.modal-popup.authentication-dropdown.gdm-register-modal._show .modal-inner-wrap {
-    box-sizing: border-box !important;
-    margin: 6rem auto 0 !important;
-    max-width: 440px !important;
-    width: calc(100vw - 30px) !important;
-}
-
-.modal-popup.authentication-dropdown.gdm-register-modal._show .block-authentication {
-    display: block !important;
-    width: 100% !important;
-}
-
-.modal-popup.authentication-dropdown.gdm-register-modal._show .block-authentication .block-customer-login {
-    border: 0 !important;
-    clear: both !important;
-    float: none !important;
-    padding: 0 !important;
-    width: 100% !important;
-}
-
-@media only screen and (max-width: 767px) {
-    .modal-popup.authentication-dropdown.gdm-register-modal._show .modal-inner-wrap {
-        margin: 15px auto !important;
-    }
-}
 
 /* Same stacked, centered layout for login and register at every width.
    Doubled class raises specificity over the theme's `.block-authentication .actions-toolbar` rules. */

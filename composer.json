@@ -2,7 +2,6 @@
     "name": "gdmexico/module-checkout-register",
     "description": "Customer account registration inside the Magento 2 checkout authentication modal.",
     "type": "magento2-module",
-    "version": "1.0.0",
     "license": [
         "proprietary"
     ],
